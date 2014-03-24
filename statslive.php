@@ -35,7 +35,7 @@ class StatsLive extends Module
 	{
 		$this->name = 'statslive';
 		$this->tab = 'analytics_stats';
-		$this->version = 1.0;
+		$this->version = 1.1;
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 
@@ -43,6 +43,7 @@ class StatsLive extends Module
 
 		$this->displayName = $this->l('Visitors online');
 		$this->description = $this->l('Adds a list of customers and visitors who are currently online to the Stats dashboard.');
+		$this->ps_versions_compliancy = array('min' => '1.5.6.1', 'max' => _PS_VERSION_);
 	}
 
 	public function install()
