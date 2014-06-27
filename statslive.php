@@ -143,7 +143,7 @@ class StatsLive extends Module
 		list($visitors, $total_visitors) = $this->getVisitorsOnline();
 		$irow = 0;
 
-		$this->html .= '<script type="text/javascript" language="javascript">
+		$this->html .= '<script type="text/javascript">
 			$("#calendar").remove();
 		</script>';
 		if (!Configuration::get('PS_STATSDATA_CUSTOMER_PAGESVIEWS'))
