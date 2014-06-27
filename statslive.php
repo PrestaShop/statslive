@@ -35,7 +35,7 @@ class StatsLive extends Module
 	{
 		$this->name = 'statslive';
 		$this->tab = 'analytics_stats';
-		$this->version = '1.2';
+		$this->version = '1.2.1';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 
@@ -149,20 +149,20 @@ class StatsLive extends Module
 		if (!Configuration::get('PS_STATSDATA_CUSTOMER_PAGESVIEWS'))
 			$this->html .= '
 				<div class="alert alert-info">'.
-				$this->l('You must activate the "Save page views for each customer" option in the "Data mining for statstics" (StatsData) module in order to see the pages viewed by your customers.').'
+				$this->l('You must activate the "Save page views for each customer" option in the "Data mining for statistics" (StatsData) module in order to see the pages that your visitors are currently viewing.').'
 				</div>';
 		$this->html .= '
-			<h4> '.$this->l('Customers online').'</h4>';
+			<h4> '.$this->l('Current online customers').'</h4>';
 		if ($total_customers)
 		{
 			$this->html .= $this->l('Total:').' '.(int)$total_customers.'
 			<table class="table">
 				<thead>
 					<tr>
-						<th class="center"><span class="title_box active">'.$this->l('ID').'</span></th>
+						<th class="center"><span class="title_box active">'.$this->l('Customer ID').'</span></th>
 						<th class="center"><span class="title_box active">'.$this->l('Name').'</span></th>
-						<th class="center"><span class="title_box active">'.$this->l('Current Page').'</span></th>
-						<th class="center"><span class="title_box active">'.$this->l('View').'</span></th>
+						<th class="center"><span class="title_box active">'.$this->l('Current page').'</span></th>
+						<th class="center"><span class="title_box active">'.$this->l('View customer profile').'</span></th>
 					</tr>
 				</thead>
 				<tbody>';
@@ -184,8 +184,9 @@ class StatsLive extends Module
 			</table>';
 		}
 		else
-			$this->html .= '<p class="alert alert-warning">'.$this->l('Currently, there are no customers online.').'</p>
-			<h4> '.$this->l('Visitors online').'</h4>';
+			$this->html .= '<p class="alert alert-warning">'.$this->l('There are no active customers online right now.').'</p>';
+		$this->html .= '
+			<h4> '.$this->l('Current online visitors').'</h4>';
 		if ($total_visitors)
 		{
 			$this->html .= $this->l('Total:').' '.(int)$total_visitors.'
@@ -193,9 +194,9 @@ class StatsLive extends Module
 				<table class="table">
 					<thead>
 						<tr>
-							<th class="center"><span class="title_box active">'.$this->l('Guest').'</span></th>
+							<th class="center"><span class="title_box active">'.$this->l('Guest ID').'</span></th>
 							<th class="center"><span class="title_box active">'.$this->l('IP').'</span></th>
-							<th class="center"><span class="title_box active">'.$this->l('Since').'</span></th>
+							<th class="center"><span class="title_box active">'.$this->l('Last activity').'</span></th>
 							<th class="center"><span class="title_box active">'.$this->l('Current page').'</span></th>
 							<th class="center"><span class="title_box active">'.$this->l('Referrer').'</span></th>
 						</tr>
@@ -215,7 +216,8 @@ class StatsLive extends Module
 			</div>';
 		}
 		else
-			$this->html .= '<p class="alert alert-warning">'.$this->l('There are no visitors online.').'</p>
+			$this->html .= '<p class="alert alert-warning">'.$this->l('There are no visitors online.').'</p>';
+		$this->html .= '
 			<h4>'.$this->l('Notice').'</h4>
 			<p class="alert alert-info">'.$this->l('Maintenance IPs are excluded from the online visitors.').'</p>
 			<a class="btn btn-default" href="index.php?controller=AdminMaintenance&token='.Tools::getAdminTokenLite('AdminMaintenance').'">
