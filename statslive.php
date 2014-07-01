@@ -173,7 +173,7 @@ class StatsLive extends Module
 						<td class="center">'.$customer['firstname'].' '.$customer['lastname'].'</td>
 						<td class="center">'.$customer['page'].'</td>
 						<td class="center">
-							<a href="index.php?tab=AdminCustomers&id_customer='.$customer['id_customer'].'&viewcustomer&token='.Tools::getAdminToken('AdminCustomers'.(int)Tab::getIdFromClassName('AdminCustomers').(int)$this->context->employee->id).'"
+							<a href="'.Tools::safeOutput('index.php?tab=AdminCustomers&id_customer='.$customer['id_customer'].'&viewcustomer&token='.Tools::getAdminToken('AdminCustomers'.(int)Tab::getIdFromClassName('AdminCustomers').(int)$this->context->employee->id)).'"
 								target="_blank">
 								<img src="../modules/'.$this->name.'/logo.gif" />
 							</a>
@@ -220,7 +220,7 @@ class StatsLive extends Module
 		$this->html .= '
 			<h4>'.$this->l('Notice').'</h4>
 			<p class="alert alert-info">'.$this->l('Maintenance IPs are excluded from the online visitors.').'</p>
-			<a class="btn btn-default" href="index.php?controller=AdminMaintenance&token='.Tools::getAdminTokenLite('AdminMaintenance').'">
+			<a class="btn btn-default" href="'.Tools::safeOutput('index.php?controller=AdminMaintenance&token='.Tools::getAdminTokenLite('AdminMaintenance')).'">
 				<i class="icon-share-alt"></i> '.$this->l('Add or remove an IP address.').'
 			</a>
 		';
