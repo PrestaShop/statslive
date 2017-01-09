@@ -36,15 +36,15 @@ class statslive extends Module
     {
         $this->name = 'statslive';
         $this->tab = 'analytics_stats';
-        $this->version = '1.3.0';
+        $this->version = '2.0.0';
         $this->author = 'PrestaShop';
         $this->need_instance = 0;
 
         parent::__construct();
 
-        $this->displayName = $this->l('Visitors online');
-        $this->description = $this->l('Adds a list of customers and visitors who are currently online to the Stats dashboard.');
-        $this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);
+        $this->displayName = $this->trans('Visitors online', array(), 'Modules.Statslive.Admin');
+        $this->description = $this->trans('Adds a list of customers and visitors who are currently online to the Stats dashboard.', array(), 'Modules.Statslive.Admin');
+        $this->ps_versions_compliancy = array('min' => '1.7.0.0', 'max' => _PS_VERSION_);
     }
 
     public function install()
@@ -146,20 +146,20 @@ class statslive extends Module
         if (!Configuration::get('PS_STATSDATA_CUSTOMER_PAGESVIEWS')) {
             $this->html .= '
 				<div class="alert alert-info">'.
-                $this->l('You must activate the "Save page views for each customer" option in the "Data mining for statistics" (StatsData) module in order to see the pages that your visitors are currently viewing.').'
+                $this->trans('You must activate the "Save page views for each customer" option in the "Data mining for statistics" (StatsData) module in order to see the pages that your visitors are currently viewing.', array(), 'Modules.Statslive.Admin').'
 				</div>';
         }
         $this->html .= '
-			<h4> '.$this->l('Current online customers').'</h4>';
+			<h4> '.$this->trans('Current online customers', array(), 'Modules.Statslive.Admin').'</h4>';
         if ($total_customers) {
-            $this->html .= $this->l('Total:').' '.(int)$total_customers.'
+            $this->html .= $this->trans('Total:', array(), 'Modules.Statslive.Admin').' '.(int)$total_customers.'
 			<table class="table">
 				<thead>
 					<tr>
-						<th class="center"><span class="title_box active">'.$this->l('Customer ID').'</span></th>
-						<th class="center"><span class="title_box active">'.$this->l('Name').'</span></th>
-						<th class="center"><span class="title_box active">'.$this->l('Current page').'</span></th>
-						<th class="center"><span class="title_box active">'.$this->l('View customer profile').'</span></th>
+						<th class="center"><span class="title_box active">'.$this->trans('Customer ID', array(), 'Admin.AdvParameters.Feature').'</span></th>
+						<th class="center"><span class="title_box active">'.$this->trans('Name', array(), 'Admin.Global').'</span></th>
+						<th class="center"><span class="title_box active">'.$this->trans('Current page', array(), 'Modules.Statslive.Admin').'</span></th>
+						<th class="center"><span class="title_box active">'.$this->trans('View customer profile', array(), 'Modules.Statslive.Admin').'</span></th>
 					</tr>
 				</thead>
 				<tbody>';
@@ -181,21 +181,21 @@ class statslive extends Module
 				</tbody>
 			</table>';
         } else {
-            $this->html .= '<p class="alert alert-warning">'.$this->l('There are no active customers online right now.').'</p>';
+            $this->html .= '<p class="alert alert-warning">'.$this->trans('There are no active customers online right now.', array(), 'Modules.Statslive.Admin').'</p>';
         }
         $this->html .= '
-			<h4> '.$this->l('Current online visitors').'</h4>';
+			<h4> '.$this->trans('Current online visitors', array(), 'Modules.Statslive.Admin').'</h4>';
         if ($total_visitors) {
-            $this->html .= $this->l('Total:').' '.(int)$total_visitors.'
+            $this->html .= $this->trans('Total:', array(), 'Modules.Statslive.Admin').' '.(int)$total_visitors.'
 			<div>
 				<table class="table">
 					<thead>
 						<tr>
-							<th class="center"><span class="title_box active">'.$this->l('Guest ID').'</span></th>
-							<th class="center"><span class="title_box active">'.$this->l('IP').'</span></th>
-							<th class="center"><span class="title_box active">'.$this->l('Last activity').'</span></th>
-							<th class="center"><span class="title_box active">'.$this->l('Current page').'</span></th>
-							<th class="center"><span class="title_box active">'.$this->l('Referrer').'</span></th>
+							<th class="center"><span class="title_box active">'.$this->trans('Guest ID', array(), 'Modules.Statslive.Admin').'</span></th>
+							<th class="center"><span class="title_box active">'.$this->trans('IP', array(), 'Modules.Statslive.Admin').'</span></th>
+							<th class="center"><span class="title_box active">'.$this->trans('Last activity', array(), 'Modules.Statslive.Admin').'</span></th>
+							<th class="center"><span class="title_box active">'.$this->trans('Current page', array(), 'Modules.Statslive.Admin').'</span></th>
+							<th class="center"><span class="title_box active">'.$this->trans('Referrer', array(), 'Admin.ShopParameters.Feature').'</span></th>
 						</tr>
 					</thead>
 					<tbody>';
@@ -204,8 +204,8 @@ class statslive extends Module
 						<td class="center">'.$visitor['id_guest'].'</td>
 						<td class="center">'.long2ip($visitor['ip_address']).'</td>
 						<td class="center">'.Tools::substr($visitor['date_add'], 11).'</td>
-						<td class="center">'.(isset($visitor['page']) ? $visitor['page'] : $this->l('Undefined')).'</td>
-						<td class="center">'.(empty($visitor['http_referer']) ? $this->l('None') : parse_url($visitor['http_referer'], PHP_URL_HOST)).'</td>
+						<td class="center">'.(isset($visitor['page']) ? $visitor['page'] : $this->trans('Undefined', array(), 'Admin.ShopParameters.Feature')).'</td>
+						<td class="center">'.(empty($visitor['http_referer']) ? $this->trans('None', array(), 'Admin.Global') : parse_url($visitor['http_referer'], PHP_URL_HOST)).'</td>
 					</tr>';
             }
             $this->html .= '
@@ -213,13 +213,13 @@ class statslive extends Module
 				</table>
 			</div>';
         } else {
-            $this->html .= '<p class="alert alert-warning">'.$this->l('There are no visitors online.').'</p>';
+            $this->html .= '<p class="alert alert-warning">'.$this->trans('There are no visitors online.', array(), 'Admin.ShopParameters.Feature').'</p>';
         }
         $this->html .= '
-			<h4>'.$this->l('Notice').'</h4>
-			<p class="alert alert-info">'.$this->l('Maintenance IPs are excluded from the online visitors.').'</p>
+			<h4>'.$this->trans('Notice', array(), 'Modules.Statslive.Admin').'</h4>
+			<p class="alert alert-info">'.$this->trans('Maintenance IPs are excluded from the online visitors.', array(), 'Modules.Statslive.Admin').'</p>
 			<a class="btn btn-default" href="'.Tools::safeOutput('index.php?controller=AdminMaintenance&token='.Tools::getAdminTokenLite('AdminMaintenance')).'">
-				<i class="icon-share-alt"></i> '.$this->l('Add or remove an IP address.').'
+				<i class="icon-share-alt"></i> '.$this->trans('Add or remove an IP address.', array(), 'Modules.Statslive.Admin').'
 			</a>
 		';
 
