@@ -195,7 +195,7 @@ class statslive extends Module
 							<th class="center"><span class="title_box active">'.$this->trans('IP', array(), 'Modules.Statslive.Admin').'</span></th>
 							<th class="center"><span class="title_box active">'.$this->trans('Last activity', array(), 'Modules.Statslive.Admin').'</span></th>
 							<th class="center"><span class="title_box active">'.$this->trans('Current page', array(), 'Modules.Statslive.Admin').'</span></th>
-							<th class="center"><span class="title_box active">'.$this->trans('Referrer', array(), 'Admin.ShopParameters.Feature').'</span></th>
+							<th class="center"><span class="title_box active">'.$this->trans('Referrer', array(), 'Admin.Shopparameters.Feature').'</span></th>
 						</tr>
 					</thead>
 					<tbody>';
@@ -204,7 +204,7 @@ class statslive extends Module
 						<td class="center">'.$visitor['id_guest'].'</td>
 						<td class="center">'.long2ip($visitor['ip_address']).'</td>
 						<td class="center">'.Tools::substr($visitor['date_add'], 11).'</td>
-						<td class="center">'.(isset($visitor['page']) ? $visitor['page'] : $this->trans('Undefined', array(), 'Admin.ShopParameters.Feature')).'</td>
+						<td class="center">'.(isset($visitor['page']) ? $visitor['page'] : $this->trans('Undefined', array(), 'Admin.Shoppparameters.Feature')).'</td>
 						<td class="center">'.(empty($visitor['http_referer']) ? $this->trans('None', array(), 'Admin.Global') : parse_url($visitor['http_referer'], PHP_URL_HOST)).'</td>
 					</tr>';
             }
@@ -213,7 +213,7 @@ class statslive extends Module
 				</table>
 			</div>';
         } else {
-            $this->html .= '<p class="alert alert-warning">'.$this->trans('There are no visitors online.', array(), 'Admin.ShopParameters.Feature').'</p>';
+            $this->html .= '<p class="alert alert-warning">'.$this->trans('There are no visitors online.', array(), 'Admin.Shopparameters.Feature').'</p>';
         }
         $this->html .= '
 			<h4>'.$this->trans('Notice', array(), 'Modules.Statslive.Admin').'</h4>
