@@ -156,7 +156,7 @@ class statslive extends Module
 			<table class="table">
 				<thead>
 					<tr>
-						<th class="center"><span class="title_box active">'.$this->trans('Customer ID', array(), 'Admin.AdvParameters.Feature').'</span></th>
+						<th class="center"><span class="title_box active">'.$this->trans('Customer ID', array(), 'Admin.Advparameters.Feature').'</span></th>
 						<th class="center"><span class="title_box active">'.$this->trans('Name', array(), 'Admin.Global').'</span></th>
 						<th class="center"><span class="title_box active">'.$this->trans('Current page', array(), 'Modules.Statslive.Admin').'</span></th>
 						<th class="center"><span class="title_box active">'.$this->trans('View customer profile', array(), 'Modules.Statslive.Admin').'</span></th>
