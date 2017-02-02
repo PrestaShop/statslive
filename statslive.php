@@ -204,7 +204,7 @@ class statslive extends Module
 						<td class="center">'.$visitor['id_guest'].'</td>
 						<td class="center">'.long2ip($visitor['ip_address']).'</td>
 						<td class="center">'.Tools::substr($visitor['date_add'], 11).'</td>
-						<td class="center">'.(isset($visitor['page']) ? $visitor['page'] : $this->trans('Undefined', array(), 'Admin.Shoppparameters.Feature')).'</td>
+						<td class="center">'.(isset($visitor['page']) ? $visitor['page'] : $this->trans('Undefined', array(), 'Admin.Shopparameters.Feature')).'</td>
 						<td class="center">'.(empty($visitor['http_referer']) ? $this->trans('None', array(), 'Admin.Global') : parse_url($visitor['http_referer'], PHP_URL_HOST)).'</td>
 					</tr>';
             }
