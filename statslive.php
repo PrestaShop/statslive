@@ -36,7 +36,7 @@ class statslive extends Module
     {
         $this->name = 'statslive';
         $this->tab = 'analytics_stats';
-        $this->version = '2.0.2';
+        $this->version = '2.1.0';
         $this->author = 'PrestaShop';
         $this->need_instance = 0;
 
@@ -73,7 +73,7 @@ class statslive extends Module
 					INNER JOIN `'._DB_PREFIX_.'customer` u ON u.id_customer = g.id_customer
 					WHERE cp.`time_end` IS NULL
 						'.Shop::addSqlRestriction(false, 'c').'
-						AND TIME_TO_SEC(TIMEDIFF(\''.pSQL(date('Y-m-d H:i:00', time())).'\', cp.`time_start`)) < 900
+						AND cp.`time_start` > NOW() - INTERVAL 15 MINUTE
 					'.($maintenance_ips ? 'AND c.ip_address NOT IN ('.preg_replace('/[^,0-9]/', '', $maintenance_ips).')' : '').'
 					GROUP BY u.id_customer
 					ORDER BY u.firstname, u.lastname';
@@ -82,7 +82,7 @@ class statslive extends Module
 					FROM `'._DB_PREFIX_.'connections` c
 					INNER JOIN `'._DB_PREFIX_.'guest` g ON c.id_guest = g.id_guest
 					INNER JOIN `'._DB_PREFIX_.'customer` u ON u.id_customer = g.id_customer
-					WHERE TIME_TO_SEC(TIMEDIFF(\''.pSQL(date('Y-m-d H:i:00', time())).'\', c.`date_add`)) < 900
+					WHERE c.`date_add` > NOW() - INTERVAL 15 MINUTE
 						'.Shop::addSqlRestriction(false, 'c').'
 					'.($maintenance_ips ? 'AND c.ip_address NOT IN ('.preg_replace('/[^,0-9]/', '', $maintenance_ips).')' : '').'
 					GROUP BY u.id_customer
@@ -114,7 +114,7 @@ class statslive extends Module
 					WHERE (g.id_customer IS NULL OR g.id_customer = 0)
 						'.Shop::addSqlRestriction(false, 'c').'
 						AND cp.`time_end` IS NULL
-					AND TIME_TO_SEC(TIMEDIFF(\''.pSQL(date('Y-m-d H:i:00', time())).'\', cp.`time_start`)) < 900
+					AND cp.`time_start` > NOW() - INTERVAL 15 MINUTE
 					'.($maintenance_ips ? 'AND c.ip_address NOT IN ('.preg_replace('/[^,0-9]/', '', $maintenance_ips).')' : '').'
 					GROUP BY c.id_connections
 					ORDER BY c.date_add DESC';
@@ -124,7 +124,7 @@ class statslive extends Module
 					INNER JOIN `'._DB_PREFIX_.'guest` g ON c.id_guest = g.id_guest
 					WHERE (g.id_customer IS NULL OR g.id_customer = 0)
 						'.Shop::addSqlRestriction(false, 'c').'
-						AND TIME_TO_SEC(TIMEDIFF(\''.pSQL(date('Y-m-d H:i:00', time())).'\', c.`date_add`)) < 900
+						AND c.`date_add` > NOW() - INTERVAL 15 MINUTE
 					'.($maintenance_ips ? 'AND c.ip_address NOT IN ('.preg_replace('/[^,0-9]/', '', $maintenance_ips).')' : '').'
 					ORDER BY c.date_add DESC';
         }
