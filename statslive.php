@@ -60,7 +60,7 @@ class statslive extends Module
     private function getCustomersOnline()
     {
         if ($maintenance_ips = Configuration::get('PS_MAINTENANCE_IP')) {
-            $maintenance_ips = implode(',', array_diff(array_map('ip2long', array_map('trim', explode(',', $maintenance_ips))), [false]));
+            $maintenance_ips = implode(',', array_filter(array_map('ip2long', array_map('trim', explode(',', $maintenance_ips)))));
         }
 
         if (Configuration::get('PS_STATSDATA_CUSTOMER_PAGESVIEWS')) {
@@ -101,7 +101,7 @@ class statslive extends Module
     private function getVisitorsOnline()
     {
         if ($maintenance_ips = Configuration::get('PS_MAINTENANCE_IP')) {
-            $maintenance_ips = implode(',', array_diff(array_map('ip2long', array_map('trim', explode(',', $maintenance_ips))), [false]));
+            $maintenance_ips = implode(',', array_filter(array_map('ip2long', array_map('trim', explode(',', $maintenance_ips)))));
         }
 
         if (Configuration::get('PS_STATSDATA_CUSTOMER_PAGESVIEWS')) {
