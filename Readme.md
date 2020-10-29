@@ -2,7 +2,7 @@
 
 ## About
 
-Adds a list of customers and visitors who are currently online to the Stats dashboard.
+Enrich your stats, add a list of the visitors who are currently browsing your store.
 
 ## Reporting issues
 
