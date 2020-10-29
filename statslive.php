@@ -43,7 +43,7 @@ class statslive extends Module
         parent::__construct();
 
         $this->displayName = $this->trans('Visitors online', array(), 'Modules.Statslive.Admin');
-        $this->description = $this->trans('Adds a list of customers and visitors who are currently online to the Stats dashboard.', array(), 'Modules.Statslive.Admin');
+        $this->description = $this->trans('Enrich your stats, add a list of the visitors who are currently browsing your store.', array(), 'Modules.Statslive.Admin');
         $this->ps_versions_compliancy = array('min' => '1.7.1.0', 'max' => _PS_VERSION_);
     }
 
