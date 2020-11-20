@@ -40,7 +40,7 @@ class statslive extends Module
     {
         $this->name = 'statslive';
         $this->tab = 'analytics_stats';
-        $this->version = '2.1.0';
+        $this->version = '2.1.1';
         $this->author = 'PrestaShop';
         $this->need_instance = 0;
 
